@@ -82,12 +82,6 @@ alias ....='cd ../../../../'
 # Valgrim memory
 alias valgrind='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes'
 
-# Play minecreaft
-alias minecraft='java -Xmx1024M -Xms512M -cp /usr/games/minecraft.jar'
-
-# Launch skype with login
-alias skype='echo johann.pierrat gw1589 | skype --pipelogin &'
-
 # SSH aliases - short cuts to ssh to a host
 alias -g shost='ssh -p 9999 user@host.com'
  
@@ -145,7 +139,6 @@ alias rat='tmux attach-session'
 alias se='sudoedit'
 
 # Exports
-#export PROMPT='%F{207}%n% %F{75}@%F{207}%m% %F{75}[%F{214}%~% %F{75}]%F{75}$%f '
 export RPROMPT='${vcs_info_msg_0_}'
 export PAGER='less'
 export NNTPSERVER='news.epita.fr'
