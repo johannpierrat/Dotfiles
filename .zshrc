@@ -80,7 +80,7 @@ alias ...='cd ../../../'
 alias ....='cd ../../../../'
 
 # Valgrim memory
-alias valgrind='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes'
+alias valgrind='valgrind --tool=memcheck --leak-check=full --show-reachable=yes'
 
 # SSH aliases - short cuts to ssh to a host
 alias -g shost='ssh -p 9999 user@host.com'
@@ -93,6 +93,18 @@ alias emacs='emacs -nw' #remove the windows by default
 
 # Shortcut for chmod +x because I use it so damn often
 alias chmx='chmod +x'
+
+# Use jogsoul directly with my config
+alias jogsoul='killall perl; perl ~/.jogsoul/jogsoul.pl ~/.jogsoul/jogsoul.conf'
+
+#alias grep color
+alias grep="grep --colour"
+
+# alias mkdir create parent
+alias mkdir='mkdir -p'
+
+# play minecraft
+alias minecraft='java -Xmx1024M -Xms512M -cp /usr/games/minecraft.jar net.minecraft.LauncherFrame'
 
 # Install go
 export GOROOT=$HOME/go
@@ -110,8 +122,6 @@ zstyle ':completion:*' menu select=1
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle :compinstall filename '/home/johann/.zshrc'
 
-autoload -U compinit
-compinit
 # End of lines added by compinstall
 setopt extendedglob
 unsetopt beep
@@ -145,3 +155,4 @@ export NNTPSERVER='news.epita.fr'
 export PATH="/sbin:$PATH"
 export EDITOR='vim'
 export TERM='xterm-256color'
+export TERMINAL='xterm'

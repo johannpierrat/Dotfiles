@@ -5,4 +5,4 @@
 *.pyc
 .ssh/*
 .vim/.netrwhist
-*.gch
+*.swp

@@ -121,8 +121,11 @@ let g:jellybeans_background_color_256='232'
 " Feel free to switch to another colorscheme
 colorscheme molokai
 
-" Allow mouse use in vim
-set mouse=a
+" change the color of the column 80 to something correct
+hi ColorColumn ctermbg=234
+
+" Allow mouse use in vim for visual only
+set mouse=v
 
 " Briefly show matching braces, parens, etc
 set showmatch
@@ -171,7 +174,7 @@ set tabstop=8
 set softtabstop=4
 
 " The number of spaces inserted/removed when using < or >
-set shiftwidth=2
+set shiftwidth=4
 
 " Insert spaces instead of tabs
 set expandtab
@@ -293,12 +296,15 @@ let g:Powerline_symbols='fancy'
 noremap <leader>se :Errors<cr>
 
 " Set the C and C++ compilers used for syntax checking with syntastic
-let g:syntastic_cpp_compiler='gcc'
+let g:syntastic_cpp_compiler='g++'
+" Compile flag for C++11 also add additionnal warning
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall -Werror'
 
 " /!\     This option currently only exists on my fork of syntastic!    /!\
 " /!\     Don't set it if you got syntastic from the main repo          /!\
 " /!\ You can find the fork here : https://github.com/Chewie/syntastic  /!\
-let g:syntastic_c_compiler='gcc'
+let g:syntastic_c_compiler='clang'
+let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -Werror -pedantic'
 
 " Check headers too, because why wouldn't we?
 let g:syntastic_c_check_header=1

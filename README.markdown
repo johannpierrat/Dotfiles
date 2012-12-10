@@ -1,9 +1,6 @@
 About
 =====
 
-Disclaimer: all credit goes to Kevin Szteir, I just did some small change to
-            adapt it for me.
-
 This is the repository containing my dotfiles, most notably my vim
 configuration.
 
