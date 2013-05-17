@@ -1,0 +1,113 @@
+# Passwords #
+#-----------#
+set my_gpass1=`awk '/Gmail1/ {print $3}' ~/.mutt_passwords`
+
+#---------------#
+# Account Hooks #
+#---------------#
+account-hook . "unset imap_user; unset imap_pass; unset tunnel" # unset first!
+account-hook        "imaps://johann.pierrat@imap.gmail.com/" "\
+    set imap_user   = johann.pierrat@gmail.com \
+        imap_pass   = $my_gpass1"
+
+#-------------------------------------#
+# Folders, mailboxes and folder hooks #
+#-------------------------------------#
+# Setup for user1:
+set folder          = imaps://johann.pierrat@imap.gmail.com/
+mailboxes           = +INBOX =[Gmail]/Drafts =[Gmail]/'Sent Mail' =[Gmail]/Spam =[Gmail]/Trash
+set spoolfile       = +INBOX
+folder-hook         imaps://johann.pierrat@imap.gmail.com/ "\
+    set folder      = imaps://johann.pierrat@imap.gmail.com/ \
+        spoolfile   = +INBOX \
+        postponed   = +[Gmail]/Drafts \
+        from        = 'Johann Pierrat &lt;johann.pierrat@gmail.com&gt; ' \
+        realname    = 'Johann Pierrat' \
+        smtp_url    = smtps://johann.pierrat@smtp.gmail.com \
+        smtp_pass   = $my_gpass1"
+
+#--------#
+# Macros #
+#--------#
+
+macro index     .i      "l((~N|~F)!~D)|(~d&lt;1w!~Q)\n"
+macro index     .n      "l~N\n"
+macro index     .f      "l~F\n"
+macro index     .o      "l(~N|~O)\n"
+macro index     .a      "l~A\n"
+macro index     .t      "l~d&lt;1d\n"
+macro index     .y      "l~d&lt;2d ~d&gt;1d\n"
+
+folder-hook     .       push '.i'
+
+#-----------------------#
+# Gmail-specific macros #
+#-----------------------#
+# to delete more than 1 message, just mark them with "t" key and then do "d" on them
+macro index d ";s+[Gmail]/Trash&lt;enter&gt;&lt;enter&gt;" "Move to Gmail's Trash"
+# delete message, but from pager (opened email)
+macro pager d "s+[Gmail]/Trash&lt;enter&gt;&lt;enter&gt;"  "Move to Gmail's Trash"
+# undelete messages
+macro index u ";s+INBOX&lt;enter&gt;&lt;enter&gt;"         "Move to Gmail's INBOX"
+macro pager u "s+INBOX&lt;enter&gt;&lt;enter&gt;"          "Move to Gmail's INBOX"
+
+#-------------------------#
+# Misc. optional settings #
+#-------------------------#
+# Check for mail every minute for current IMAP mailbox every 1 min
+set timeout         = 60
+# Check for new mail in ALL mailboxes every 2 min
+set mail_check      = 120
+# keep imap connection alive by polling intermittently (time in seconds)
+set imap_keepalive  = 300
+# allow mutt to open new imap connection automatically
+unset imap_passive
+# store message headers locally to speed things up
+# (the ~/.mutt folder MUST exist! Arch does not create it by default)
+set header_cache    = ~/.mutt/hcache
+# sort mail by threads
+set sort            = threads
+# and sort threads by date
+set sort_aux        = reverse-last-date-received
+# editor
+set editor = "vim +/^$"
+# use the reply-to: field instead of to: when replying
+set reply_to
+# also edit headers
+set edit_headers
+# remove the "old" state
+unset mark_old
+# don't record sent message: Gmail's SMTP server does that automatically.
+unset record
+
+# COLORS {{{
+#color index      color188 color237 ~A
+color index      color188 color237 ~N
+#color index      color188 color237 ~O
+color index      color174 color237 ~F
+#color index      color174 color237 ~D
+
+color status      cyan          black
+color indicator   black         yellow
+color tree        blue          black
+color error       red           black
+color hdrdefault  black         white
+color header      brightyellow  default  "^(From|Subject):"
+color header      brightcyan    default  ^To:
+color header      brightcyan    default  ^Cc:
+color index       black         red      "~F !~p !~P"
+color index       black         cyan     "~T !~F !~p !~P"
+color body        brightwhite   default  " [;:]-*[})&gt;{(&lt;|]
+color body        blue          default  "( *[-+=#*~_]){6,}"
+color signature   cyan          default
+color quoted      green         default
+color quoted1     yellow        default
+color quoted2     red           default
+color markers     brightred     default
+#color sidebar_new yellow        default
+# Note: I haven't written the two following rules. I don't remember where
+# I grabbed those, but I hope they have been automatically generated, because
+# they are quite scary to me.
+color body        brightyellow  default  "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&amp;=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&amp;=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&amp;=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&amp;=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&amp;=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&amp;=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&amp;=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&amp;=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&amp;=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&amp;=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&amp;=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&amp;=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&amp;=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&amp;=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n&lt;&gt;\"]"
+color body        brightmagenta default  "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+# }}}
