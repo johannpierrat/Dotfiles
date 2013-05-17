@@ -3,8 +3,8 @@
 "   This is the .vimrc file
 "
 " Maintainer:
-"   Kévin "Chewie" Sztern
-"   <chewie@deliciousmuffins.net>
+"   Johann "Pitacalo" Pierrat
+"   <johann.pierrat@gmail.com>
 "
 " Complete_version:
 "   You can find the complete configuration,
@@ -12,6 +12,8 @@
 "   https://github.com/Chewie/configs
 "
 " Acknowledgements:
+"   This vimrc is mostly base of the one of Kévin "Chewie" Sztern
+"   Check out his github at: https://github.com/Chewie/
 "   Several elements of this .vimrc come from Pierre Bourdon's config
 "   You can find it here: https://bitbucket.org/delroth/configs/
 "
