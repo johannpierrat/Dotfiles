@@ -10,13 +10,9 @@ setopt extendedglob
 setopt glob_dots
 
 # Synchronize the git submodules
-files=$(grep 'path' .gitmodules | sed 's/^\s*path = //')
-for file in $files; do
-    mkdir -p $file
-done
 git submodule init
 git submodule update
 
 # Create symlinks
-#cd $HOME
-#ln -f -s $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown .
+cd $HOME
+ln -f -s $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown .
