@@ -234,10 +234,10 @@ noremap <leader>cw :botright :cw<cr>
 noremap <leader>m :silent! :make \| :redraw! \| :botright :cw<cr>
 
 " Remove the arrow key
-noremap <up> <nop>
-noremap <left> <nop>
-noremap <down> <nop>
-noremap <right> <nop>
+"noremap <up> <nop>
+"noremap <left> <nop>
+"noremap <down> <nop>
+"noremap <right> <nop>
 
 " Faster windows movement
 noremap <C-h> <C-w><C-h>
@@ -276,6 +276,9 @@ endif
 " Plugin mappings and options
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " /!\ Comment these if you only have the .vimrc! /!\
+
+" Toggle Rainbow Parentheses
+au VimEnter * RainbowParenthesesToggleAll
 
 " Toggle Tagbar
 noremap <leader>tt :TagbarToggle<cr>
