@@ -63,6 +63,9 @@ set updatetime=500
 " Ignore unwanted files
 set wildignore=*.o,*~,*.gch,*.so,*.a
 
+" Change the directory to the current directory of the buffer
+set autochdir
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """"""""""""""""""""""""""""""""""""""""""""""""""
