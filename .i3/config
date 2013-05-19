@@ -150,3 +150,4 @@ exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id ~/Pictures/Wallpaper/sliding.sh
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
+exec --no-startup-id synaptiks
