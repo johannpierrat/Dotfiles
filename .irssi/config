@@ -1,6 +1,6 @@
 #This needs to be changed before it will work - in place of #channel put a
-#channel name, in place of irc.server1,2,3.org put the name of your server, in
-#place of server1,2,3 put the name you want the server to be known as.  Make
+#channel name, in place of irc.freenode,2,3.org put the name of your server, in
+#place of freenode,2,3 put the name you want the server to be known as.  Make
 #sure you keep these consistant throughout the config.  Remember to change the
 #realname and nick values too.  Hilights will also need to be set.  This config
 #will autoconnect to 3 servers and 7 channels.  For more just copy and paste the
@@ -11,20 +11,20 @@
 
 servers = (
   {
-    address = "irc.server1.org";
-    chatnet = "server1";
+    address = "irc.freenode.org";
+    chatnet = "freenode";
     port = "6667";
     autoconnect = "yes";
   },
   {
-    address = "irc.server2.org";
-    chatnet = "server2";
+    address = "irc.quakenet.org";
+    chatnet = "quakenet";
     port = "6667";
     autoconnect = "yes";
   },
   {
-    address = "irc.server3.org";
-    chatnet = "server3";
+    address = "irc.epita.rezosup.org";
+    chatnet = "epita";
     port = "6667";
     autoconnect = "yes";
   }
@@ -32,7 +32,7 @@ servers = (
 
 #THIS SECTION DEALS WITH THE COMMANDS THAT ARE SENT WHEN YOU JOIN A SERVER
 chatnets = {
-  server1 = {
+  freenode = {
     type = "IRC";
     autosendcmd = "/msg nickserv identify nickname password";
     max_kicks = "4";
@@ -40,22 +40,23 @@ chatnets = {
     max_msgs = "5";
     max_whois = "4";
   };
-  server2 = {
+  quakenet = {
     type = "IRC";
     autosendcmd = "/msg nickserv identify nickname password";
   };
   server3 = { type = "IRC"; };
+  epita = { type = "IRC"; };
 };
 
 #THIS SECTION DEALS WITH THE CHANNELS THAT YOU WANT TO JOIN ON CONNECT
 channels = (
-  { name = "#channel1"; chatnet = "server1"; autojoin = "yes"; },
-  { name = "#channel2"; chatnet = "server1"; autojoin = "yes"; },
-  { name = "#channel3"; chatnet = "server1"; autojoin = "yes"; },
-  { name = "#channel4"; chatnet = "server2"; autojoin = "yes"; },
-  { name = "#channel5"; chatnet = "server2"; autojoin = "yes"; },
-  { name = "#channel6"; chatnet = "server2"; autojoin = "yes"; },
-  { name = "#channel7"; chatnet = "server3"; autojoin = "yes"; }
+  { name = "#startups"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#teamliquid"; chatnet = "quakenet"; autojoin = "yes"; },
+  { 
+    name = "#r/leagueoflegends";
+    chatnet = "quakenet";
+    autojoin = "no";
+  }
 );
 
 #THIS SECTION DEALS WITH ALIASES
@@ -230,9 +231,9 @@ statusbar = {
 #THIS SECTION DEALS WITH SETTINGS SUCH AS YOUR NAME AND TIMESTAMP FORMAT
 settings = {
   core = {
-    real_name = "Name";
-    user_name = "Name";
-    nick = "Nickname";
+    real_name = "Johann Pierrat";
+    user_name = "Pitacalo";
+    nick = "Pitacalo";
     timestamp_format = "%H:%M:%S";
   };
   "fe-text" = { scrollback_time = "48h"; actlist_sort = "refnum"; };
@@ -257,8 +258,8 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#channel1";
-        tag = "server1";
+        name = "#startups";
+        tag = "freenode";
       }
     );
   };
@@ -267,58 +268,8 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#channel2";
-        tag = "server1";
-      }
-    );
-  };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#channel3";
-        tag = "server1";
-      }
-    );
-  };
-  5 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#channel4";
-        tag = "server2";
-      }
-    );
-  };
-  6 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#channel5";
-        tag = "server2";
-      }
-    );
-  };
-  7 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "channel6";
-        tag = "server2";
-      }
-    );
-  };
-  8 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#channel7";
-        tag = "server3";
+        name = "#teamliquid";
+        tag = "quakenet";
       }
     );
   };

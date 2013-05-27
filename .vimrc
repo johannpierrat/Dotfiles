@@ -176,10 +176,10 @@ set gdefault
 set tabstop=8
 
 " The number of spaces inserted when you press tab
-set softtabstop=4
+set softtabstop=2
 
 " The number of spaces inserted/removed when using < or >
-set shiftwidth=4
+set shiftwidth=2
 
 " Insert spaces instead of tabs
 set expandtab
@@ -312,7 +312,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall -Werror'
 " /!\     Don't set it if you got syntastic from the main repo          /!\
 " /!\ You can find the fork here : https://github.com/Chewie/syntastic  /!\
 let g:syntastic_c_compiler='clang'
-let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -Werror -pedantic'
+let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic `sdl-config --cflags`'
 
 " Check headers too, because why wouldn't we?
 let g:syntastic_c_check_header=1
