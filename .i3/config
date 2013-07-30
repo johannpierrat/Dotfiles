@@ -104,7 +104,7 @@ bindsym $mod+Shift+parenright move container to workspace 10
 # Change the volume
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
+#bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -152,7 +152,6 @@ bar {
 }
 
 exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id ~/Pictures/Wallpaper/sliding.sh
-exec --no-startup-id dropbox start
+exec --no-startup-id ~/Pictures/wallpaper/sliding
 exec --no-startup-id nm-applet
 exec --no-startup-id synaptiks
