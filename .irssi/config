@@ -237,7 +237,7 @@ settings = {
     timestamp_format = "%H:%M:%S";
   };
   "fe-text" = { scrollback_time = "48h"; actlist_sort = "refnum"; };
-  "fe-common/core" = { autolog = "yes"; };
+  "fe-common/core" = { autolog = "yes"; log_create_mode = 600; };
 };
 
 #THIS SECTION DEALS WITH YOUR HILIGHTS
