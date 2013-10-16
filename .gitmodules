@@ -55,3 +55,9 @@
 [submodule ".vim/bundle/bundler"]
 	path = .vim/bundle/bundler
 	url = git://github.com/tpope/vim-bundler.git
+[submodule ".vim/bundle/vimrails"]
+	path = .vim/bundle/vimrails
+	url = https://github.com/tpope/vim-rails.git
+[submodule ".vim/bundle/gocode"]
+	path = .vim/bundle/gocode
+	url = https://github.com/Blackrush/vim-gocode.git
