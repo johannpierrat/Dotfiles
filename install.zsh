@@ -13,6 +13,9 @@ setopt glob_dots
 git submodule init
 git submodule update
 
+# create vim undo dir
+mkdir .vim/undodir
+
 # Create symlinks
 cd $HOME
 ln -f -s $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown .

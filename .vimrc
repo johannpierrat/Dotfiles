@@ -66,6 +66,10 @@ set wildignore=*.o,*~,*.gch,*.so,*.a
 " Change the directory to the current directory of the buffer
 set autochdir
 
+" Set undo file directories
+set undofile
+set undodir=$HOME/.vim/undodir
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " User interface
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,6 +324,9 @@ let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic `sdl-con
 " Check headers too, because why wouldn't we?
 let g:syntastic_c_check_header=1
 let g:syntastic_cpp_check_header=1
+
+" Python option
+let g:syntastic_python_checkers = ['pylint']
 
 " Clang_complete options
 " ----------------------
