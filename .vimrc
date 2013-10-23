@@ -295,6 +295,9 @@ noremap <leader>ta :Tab / [^ ]*;<cr>
 " Launch fugitive's gstatus
 noremap <leader>gs :Gstatus<cr>
 
+" Shortcut GundoToggle
+noremap <leader>gu :GundoToggle<cr>
+
 " Use the patched font for the fancy status line
 let g:Powerline_symbols='fancy'
 
