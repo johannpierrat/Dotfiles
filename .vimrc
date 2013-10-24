@@ -6,36 +6,29 @@
 "   Johann "Pitacalo" Pierrat
 "   <johann.pierrat@gmail.com>
 "
-" Complete_version:
-"   You can find the complete configuration,
-"   including all the plugins used, here:
-"   https://github.com/Chewie/configs
-"
 " Acknowledgements:
-"   This vimrc is mostly base of the one of Kévin "Chewie" Sztern
+"   This vimrc is  base of the one of Kévin "Chewie" Sztern
 "   Check out his github at: https://github.com/Chewie/
 "   Several elements of this .vimrc come from Pierre Bourdon's config
 "   You can find it here: https://bitbucket.org/delroth/configs/
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" General parameters
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" General Parameters ------------------------------------------------------{{{
 
 " Disable vi compatibility mode
 set nocompatible
-
+"   Pathogen {{{
 " Pathogen requires the ftplugins to be disabled
 filetype plugin off
 
 " /!\ Comment this line if you only have the .vimrc /!\
 " Load all the plugins in .vim/bundle
 call pathogen#infect()
-
+" }}}
 " Enable filetype detection for plugins and indentation options
 filetype plugin indent on
+filetype plugin on
 
 " Reload a file when it is changed from the outside
 set autoread
@@ -70,9 +63,9 @@ set autochdir
 set undofile
 set undodir=$HOME/.vim/undodir
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" User interface
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" User inteface -----------------------------------------------------------{{{
+
 
 " Make backspace behave as expected
 set backspace=eol,indent,start
@@ -90,18 +83,21 @@ set showcmd
 " Show line number
 set number
 
+" Format the status line ---------------------------------------{{{
 " Always show status line
 set laststatus=2
-
-" Format the status line
 " This status line comes from Pierre Bourdon's vimrc
 set statusline=%f\ %l\|%c\ %m%=%p%%\ (%Y%R)
-
 " Enhance command line completion
 set wildmenu
-
 " Set completion behavior, see :help wildmode for details
 set wildmode=list:longest:full
+" Disable preview window on completion
+set completeopt=menu,longest
+" Set omnifunc complete
+set omnifunc=syntaxcomplete#Complete
+
+" }}}
 
 " Disable bell completely
 set visualbell
@@ -121,6 +117,7 @@ set fillchars=vert:│
 " Enables syntax highlighting
 syntax on
 
+" Colorscheme option ------------------------------------------{{{
 " Enable Doxygen highlighting
 let g:load_doxygen_syntax=1
 
@@ -133,27 +130,36 @@ colorscheme molokai
 " change the color of the column 80 to something correct
 hi ColorColumn ctermbg=234
 
+" }}}
+
 " Allow mouse use in vim for visual only
 set mouse=v
 
 " Briefly show matching braces, parens, etc
 set showmatch
 
+"   Line wrap ---------------------------------------------------{{{
 " Enable line wrapping
 set wrap
 
 " Wrap on column 80
 set textwidth=79
+" }}}
 
-" Disable preview window on completion
-set completeopt=menu,longest
 
 " Highlight current line
 set cursorline
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search options
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"   Code Folding --------------------------------------------------{{{
+set foldlevelstart=0
+set foldmethod=marker
+set foldnestmax=10
+set foldenable
+" }}}
+
+" }}}
+" Search options -------------------------------------------------{{{
 
 " Ignore case on search
 set ignorecase
@@ -170,9 +176,8 @@ set nohlsearch
 " Toggle g option by default on substition
 set gdefault
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indentation options
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Indentation options --------------------------------------------{{{
 
 " The length of a tab
 " This is for documentation purposes only,
@@ -200,10 +205,8 @@ set autoindent
 " multiple lines
 set cinoptions=(0,u0,U0,t0,g0,N-s
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" Mappings -------------------------------------------------------{{{
 " Set "," as map leader
 let mapleader = ","
 
@@ -229,7 +232,8 @@ cnoreabbrev w!! w !sudo tee % >/dev/null
 
 " map ; to :
 noremap ; :
-
+" Error display -------------------------------------------------{{{
+"
 " Open the quickfix window if there are errors, or close it if there are no
 " errors left
 noremap <leader>cw :botright :cw<cr>
@@ -240,20 +244,18 @@ noremap <leader>cw :botright :cw<cr>
 " no more errors
 noremap <leader>m :silent! :make \| :redraw! \| :botright :cw<cr>
 
-" Remove the arrow key
-"noremap <up> <nop>
-"noremap <left> <nop>
-"noremap <down> <nop>
-"noremap <right> <nop>
-
-" Faster windows movement
+"}}}
+"   Faster windows movement ---------------------------------------{{{
+"
 noremap <C-h> <C-w><C-h>
 noremap <C-j> <C-w><C-j>
 noremap <C-k> <C-w><C-k>
 noremap <C-l> <C-w><C-l>
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Persistence options
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" }}}
+
+" }}}
+" Persistence options --------------------------------------------{{{
 
 " Set location of the viminfo file
 set viminfo='20,\"50,<100,n~/.vimtmp/viminfo
@@ -279,10 +281,8 @@ if version >= 703
     silent !mkdir -p ~/.vimtmp/undo
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin mappings and options
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" /!\ Comment these if you only have the .vimrc! /!\
+" }}}
+" Plugin options -------------------------------------------------{{{
 
 " Toggle Rainbow Parentheses
 au VimEnter * RainbowParenthesesToggleAll
@@ -300,13 +300,13 @@ noremap <leader>ta :Tab / [^ ]*;<cr>
 noremap <leader>gs :Gstatus<cr>
 
 " Shortcut GundoToggle
-noremap <leader>gu :GundoToggle<cr>
+noremap <leader>@ :GundoToggle<cr>
 
 " Use the patched font for the fancy status line
 let g:Powerline_symbols='fancy'
 
-" Syntastic mappings and options
-" -------------------------------
+"   Syntastic {{{
+
 " Open the syntax errors location window
 noremap <leader>se :Errors<cr>
 
@@ -315,9 +315,6 @@ let g:syntastic_cpp_compiler='g++'
 " Compile flag for C++11 also add additionnal warning
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall -Werror'
 
-" /!\     This option currently only exists on my fork of syntastic!    /!\
-" /!\     Don't set it if you got syntastic from the main repo          /!\
-" /!\ You can find the fork here : https://github.com/Chewie/syntastic  /!\
 let g:syntastic_c_compiler='clang'
 let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic `sdl-config --cflags`'
 
@@ -331,8 +328,9 @@ let g:syntastic_python_checkers = ['pylint']
 " Haskell option
 let g:syntastic_haskell_compiler = 'ghc'
 
-" Clang_complete options
-" ----------------------
+" }}}
+
+"   Clang_complete options {{{
 
 " Don't complete unless asked to
 let g:clang_complete_auto=0
@@ -343,3 +341,7 @@ let g:clang_use_library=1
 " Use snippets to complete
 let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
+
+" }}}
+
+" }}}
