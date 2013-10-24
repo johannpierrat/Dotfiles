@@ -13,19 +13,18 @@
 "   You can find it here: https://bitbucket.org/delroth/configs/
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
-" General Parameters ------------------------------------------------------{{{
+" General Parameters ---------------------------------------------{{{
 
 " Disable vi compatibility mode
 set nocompatible
-"   Pathogen {{{
+
 " Pathogen requires the ftplugins to be disabled
 filetype plugin off
 
 " /!\ Comment this line if you only have the .vimrc /!\
 " Load all the plugins in .vim/bundle
 call pathogen#infect()
-" }}}
+
 " Enable filetype detection for plugins and indentation options
 filetype plugin indent on
 filetype plugin on
@@ -64,7 +63,7 @@ set undofile
 set undodir=$HOME/.vim/undodir
 
 " }}}
-" User inteface -----------------------------------------------------------{{{
+" User inteface --------------------------------------------------{{{
 
 
 " Make backspace behave as expected
@@ -82,6 +81,9 @@ set showcmd
 
 " Show line number
 set number
+
+" Set relative number (easier to jump around)
+set relativenumber
 
 " Format the status line ---------------------------------------{{{
 " Always show status line
@@ -209,13 +211,14 @@ set cinoptions=(0,u0,U0,t0,g0,N-s
 " Mappings -------------------------------------------------------{{{
 " Set "," as map leader
 let mapleader = ","
-
+" Regex ---------------------------------------------------------{{{
 " 'very magic' regexp searches
 nnoremap / /\v
 nnoremap ? ?\v
 
 " 'very magic' regexp substitutions
 cnoremap %s %s/\v
+" }}}
 
 " Toggle paste mode
 noremap <leader>pp :setlocal paste!<cr>
@@ -283,29 +286,42 @@ endif
 
 " }}}
 " Plugin options -------------------------------------------------{{{
-
+"   Rainbow parentheses -------------------------------------------{{{
 " Toggle Rainbow Parentheses
 au VimEnter * RainbowParenthesesToggleAll
 
+" }}}
+" Tagbar --------------------------------------------------------{{{
 " Toggle Tagbar
 noremap <leader>tt :TagbarToggle<cr>
 
+" }}}
+" NERDTree ------------------------------------------------------{{{
 " Toggle NERDTree
 noremap <leader>nt :NERDTreeToggle<cr>
 
+" }}}
+" Tabular--------------------------------------------------------{{{
 " Align all variable names with tabular
 noremap <leader>ta :Tab / [^ ]*;<cr>
 
+" }}}
+" Fugitive ------------------------------------------------------{{{
 " Launch fugitive's gstatus
 noremap <leader>gs :Gstatus<cr>
 
+" }}}
+" Gundo ---------------------------------------------------------{{{
 " Shortcut GundoToggle
 noremap <leader>@ :GundoToggle<cr>
 
+" }}}
+" Powerline -----------------------------------------------------{{{
 " Use the patched font for the fancy status line
 let g:Powerline_symbols='fancy'
 
-"   Syntastic {{{
+" }}}
+"   Syntastic -----------------------------------------------------{{{
 
 " Open the syntax errors location window
 noremap <leader>se :Errors<cr>
@@ -322,15 +338,11 @@ let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic `sdl-con
 let g:syntastic_c_check_header=1
 let g:syntastic_cpp_check_header=1
 
-" Python option
-let g:syntastic_python_checkers = ['pylint']
-
 " Haskell option
 let g:syntastic_haskell_compiler = 'ghc'
 
 " }}}
-
-"   Clang_complete options {{{
+"   Clang_complete options ----------------------------------------{{{
 
 " Don't complete unless asked to
 let g:clang_complete_auto=0
