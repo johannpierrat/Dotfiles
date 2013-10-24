@@ -58,10 +58,6 @@ set wildignore=*.o,*~,*.gch,*.so,*.a
 " Change the directory to the current directory of the buffer
 set autochdir
 
-" Set undo file directories
-set undofile
-set undodir=$HOME/.vim/undodir
-
 " }}}
 " User inteface --------------------------------------------------{{{
 
@@ -265,7 +261,7 @@ set viminfo='20,\"50,<100,n~/.vimtmp/viminfo
 
 " From the Vim wiki
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-function! ResCur()
+function! ResCur() " {{{
     if line("'\"") <= line("$")
         normal! g`"
         return 1
@@ -276,13 +272,13 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
-
-" Persistent undo
+" }}}
+" Persistent undo {{{
 if version >= 703
     set undofile
     set undodir=~/.vimtmp/undo
     silent !mkdir -p ~/.vimtmp/undo
-endif
+endif "}}}
 
 " }}}
 " Plugin options -------------------------------------------------{{{
