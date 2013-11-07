@@ -18,6 +18,7 @@
 " Disable vi compatibility mode
 set nocompatible
 
+" Pathogen -------------------------------------------------------{{{
 " Pathogen requires the ftplugins to be disabled
 filetype plugin off
 
@@ -25,6 +26,7 @@ filetype plugin off
 " Load all the plugins in .vim/bundle
 call pathogen#infect()
 
+" }}}
 " Enable filetype detection for plugins and indentation options
 filetype plugin indent on
 filetype plugin on
@@ -57,10 +59,8 @@ set wildignore=*.o,*~,*.gch,*.so,*.a
 
 " Change the directory to the current directory of the buffer
 set autochdir
-
 " }}}
 " User inteface --------------------------------------------------{{{
-
 
 " Make backspace behave as expected
 set backspace=eol,indent,start
@@ -69,18 +69,22 @@ set backspace=eol,indent,start
 " Useful for keeping context when moving with j/k
 set scrolloff=5
 
+" Show Info ------------------------------------------------------{{{
 " Show current mode
 set showmode
 
 " Show command being executed
 set showcmd
 
+" }}}
+" Number -------------------------------------------------------{{{
 " Show line number
 set number
 
 " Set relative number (easier to jump around)
 set relativenumber
 
+" }}}
 " Format the status line ---------------------------------------{{{
 " Always show status line
 set laststatus=2
@@ -96,25 +100,20 @@ set completeopt=menu,longest
 set omnifunc=syntaxcomplete#Complete
 
 " }}}
-
-" Disable bell completely
+" Disable bell completely --------------------------------------{{{
 set visualbell
 set t_vb=
 
-" Color the column after textwidth, usually the 80th
-if version >= 703
-  set colorcolumn=+1
-endif
-
-" Display whitespace characters
+" }}}
+" Display whitespace characters -------------------------------{{{
 set list
 set listchars=tab:>─,eol:¬,trail:\ ,nbsp:¤
 
 set fillchars=vert:│
 
+" }}}
 " Enables syntax highlighting
 syntax on
-
 " Colorscheme option ------------------------------------------{{{
 " Enable Doxygen highlighting
 let g:load_doxygen_syntax=1
@@ -128,14 +127,16 @@ colorscheme molokai
 " change the color of the column 80 to something correct
 hi ColorColumn ctermbg=234
 
+" Color the column after textwidth, usually the 80th
+if version >= 703
+  set colorcolumn=+1
+endif
 " }}}
-
 " Allow mouse use in vim for visual only
 set mouse=v
 
 " Briefly show matching braces, parens, etc
 set showmatch
-
 "   Line wrap ---------------------------------------------------{{{
 " Enable line wrapping
 set wrap
@@ -143,19 +144,14 @@ set wrap
 " Wrap on column 80
 set textwidth=79
 " }}}
-
-
 " Highlight current line
 set cursorline
-
-
 "   Code Folding --------------------------------------------------{{{
 set foldlevelstart=0
 set foldmethod=marker
 set foldnestmax=10
 set foldenable
 " }}}
-
 " }}}
 " Search options -------------------------------------------------{{{
 
@@ -173,7 +169,6 @@ set nohlsearch
 
 " Toggle g option by default on substition
 set gdefault
-
 " }}}
 " Indentation options --------------------------------------------{{{
 
@@ -183,10 +178,10 @@ set gdefault
 set tabstop=8
 
 " The number of spaces inserted when you press tab
-set softtabstop=4
+set softtabstop=2
 
 " The number of spaces inserted/removed when using < or >
-set shiftwidth=4
+set shiftwidth=2
 
 " Insert spaces instead of tabs
 set expandtab
@@ -207,7 +202,7 @@ set cinoptions=(0,u0,U0,t0,g0,N-s
 " Mappings -------------------------------------------------------{{{
 " Set "," as map leader
 let mapleader = ","
-" Regex ---------------------------------------------------------{{{
+" Search --------------------------------------------------------{{{
 " 'very magic' regexp searches
 nnoremap / /\v
 nnoremap ? ?\v
@@ -215,7 +210,6 @@ nnoremap ? ?\v
 " 'very magic' regexp substitutions
 cnoremap %s %s/\v
 " }}}
-
 " Toggle paste mode
 noremap <leader>pp :setlocal paste!<cr>
 
@@ -225,6 +219,10 @@ nnoremap k gk
 
 " Yank from cursor to end of line, to be consistent with C and D
 nnoremap Y y$
+
+" Reselect line after indent, this allow quick multiple indent
+vnoremap > > gv
+vnoremap < < gv
 
 " Write as root, when you forgot to sudoedit
 cnoreabbrev w!! w !sudo tee % >/dev/null
@@ -254,6 +252,19 @@ noremap <C-l> <C-w><C-l>
 " }}}
 
 " }}}
+" File type ------------------------------------------------------{{{
+" Python ---------------------------------------------------------{{{
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python set softtabstop=4 | set shiftwidth=4
+" Script for google indent style
+autocmd FileType python source ~/.vim/script/indent/google_python_style.vim
+
+" }}}
+" Cpp ------------------------------------------------------------{{{
+autocmd filetype cpp set softtabstop=2 | set shiftwidth=2
+" }}}
+
+" }}}
 " Persistence options --------------------------------------------{{{
 
 " Set location of the viminfo file
@@ -279,7 +290,6 @@ if version >= 703
     set undodir=~/.vimtmp/undo
     silent !mkdir -p ~/.vimtmp/undo
 endif "}}}
-
 " }}}
 " Plugin options -------------------------------------------------{{{
 "   Rainbow parentheses -------------------------------------------{{{
@@ -351,5 +361,4 @@ let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
 
 " }}}
-
 " }}}
