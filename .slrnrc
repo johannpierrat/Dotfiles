@@ -14,7 +14,7 @@
 % With the example settings, it would read "John Doe <john@doe.com>"
 set username "pierra_j"
 set hostname "epita.fr"
-set realname "Pierrat Johann"
+set realname "Johann Pierrat"
 
 % Set this if you want replies to your articles to go to a address different
 % from the one in "From:".
@@ -33,7 +33,8 @@ set signature ".signature"
 % Tell slrn which newsrc file it should use for which server.
 % Note: This does *not* set the default server; you need to set the
 %       NNTPSERVER environment variable for this.
-server "news.epita.fr" ".jnewsrc-epita"
+server "news.epita.fr" ".jnews/jnewsrc-epita"
+server "snorky.mixmin.net" ".jnews/jnewsrc-mixmin"
 
 % If a server requires authentication, add a nnrpaccess line for it.
 % If you leave username and/or password empty, slrn will prompt for it.
@@ -89,7 +90,7 @@ server "news.epita.fr" ".jnewsrc-epita"
 % Set your favourite editor.  Use %s for the file name and %d for the line
 % where the cursor should be placed (usually at the beginning of the body).
 %set editor_command "jed '%s' -g %d -tmp"
-%set editor_command "vim -c %d '%s'"
+set editor_command "vim '+set textwidth=72' %d '%s'"
 
 % You can have separate commands for editing posts, mail, and score files.
 %set mail_editor_command "jed '%s' -g %d -tmp --mail-mode"
