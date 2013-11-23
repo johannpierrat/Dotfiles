@@ -69,7 +69,7 @@ set backspace=eol,indent,start
 " Useful for keeping context when moving with j/k
 set scrolloff=5
 
-" Show Info ------------------------------------------------------{{{
+" Show Info ----------------------------------------------------{{{
 " Show current mode
 set showmode
 
@@ -105,7 +105,7 @@ set visualbell
 set t_vb=
 
 " }}}
-" Display whitespace characters -------------------------------{{{
+" Display whitespace characters --------------------------------{{{
 set list
 set listchars=tab:>─,eol:¬,trail:\ ,nbsp:¤
 
@@ -114,7 +114,7 @@ set fillchars=vert:│
 " }}}
 " Enables syntax highlighting
 syntax on
-" Colorscheme option ------------------------------------------{{{
+" Colorscheme option -------------------------------------------{{{
 " Enable Doxygen highlighting
 let g:load_doxygen_syntax=1
 
@@ -249,19 +249,6 @@ noremap <C-j> <C-w><C-j>
 noremap <C-k> <C-w><C-k>
 noremap <C-l> <C-w><C-l>
 
-" }}}
-
-" }}}
-" File type ------------------------------------------------------{{{
-" Python ---------------------------------------------------------{{{
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set softtabstop=4 | set shiftwidth=4
-" Script for google indent style
-autocmd FileType python source ~/.vim/script/indent/google_python_style.vim
-
-" }}}
-" Cpp ------------------------------------------------------------{{{
-autocmd filetype cpp set softtabstop=2 | set shiftwidth=2
 " }}}
 
 " }}}
