@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".fonts/cosmis-sans"]
+	path = .fonts/cosmis-sans
+	url = https://github.com/belluzj/cosmic-sans-neue.git
