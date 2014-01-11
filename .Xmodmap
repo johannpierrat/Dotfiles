@@ -1,2 +1,5 @@
-clear Lock
-keycode 0x42 = Escape
+keycode 0x3e = Escape
+remove shift = Escape
+keycode 0x42 = Control_L
+clear lock
+add Control = Control_L

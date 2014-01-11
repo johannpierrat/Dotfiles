@@ -131,8 +131,8 @@ alias ls='ls --color=auto'
 alias rat='tmux attach-session'
 alias se='sudoedit'
 
-# Classier i3lock
-alias i3lock='i3lock -i /home/johann/Picture/lock.png'
+# Launch steam with primusrun
+alias steam='primusrun steam'
 
 # Exports
 export RPROMPT='${vcs_info_msg_0_}'
@@ -142,6 +142,5 @@ export PATH="/sbin:$PATH"
 export EDITOR='vim'
 export TERM='xterm-256color'
 export TERMINAL='xterm'
-export PATH="/usr/local/go/bin:$PATH"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

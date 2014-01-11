@@ -227,6 +227,8 @@ vnoremap < < gv
 " Write as root, when you forgot to sudoedit
 cnoreabbrev w!! w !sudo tee % >/dev/null
 
+" Toggle spellcheck
+nnoremap <F5> :setlocal spell!<CR>
 " map ; to :
 noremap ; :
 " Error display -------------------------------------------------{{{
