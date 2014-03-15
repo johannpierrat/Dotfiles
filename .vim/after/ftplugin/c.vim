@@ -1,1 +1,1 @@
-setlocal comments=sl:/*,mb:**,elx:*/
+setlocal comments=sl:/*,mb:\ *,elx:*/
