@@ -20,7 +20,13 @@ servers = (
     address = "irc.quakenet.org";
     chatnet = "quakenet";
     port = "6667";
-    autoconnect = "yes";
+    autoconnect = "no";
+  },
+  {
+    address = "irc.snoonet.org";
+    chatnet = "snoonet";
+    port = "6667";
+    autoconnect = "no";
   },
   {
     address = "irc.epita.rezosup.org";
@@ -45,15 +51,20 @@ chatnets = {
     type = "IRC";
     nick = "pitacalo";
   };
+  snoonet = {
+    type = "IRC";
+    nick = "pitacalo";
+  };
   server3 = { type = "IRC"; };
-  epita = { type = "IRC"; nick = "pierra_j"; };
+  epita = { type = "IRC"; nick = "pitacalo"; };
 };
 
 #THIS SECTION DEALS WITH THE CHANNELS THAT YOU WANT TO JOIN ON CONNECT
 channels = (
-  { name = "#startups"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#startups"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#teamliquid"; chatnet = "quakenet"; autojoin = "no"; },
   { name = "#r/leagueoflegends"; chatnet = "quakenet"; autojoin = "no"; },
+  { name = "#Games"; chatnet = "snoonet"; autojoin = "no" },
   { name = "##c"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##cpp"; chatnet = "freenode"; autojoin = "no"; }
 )

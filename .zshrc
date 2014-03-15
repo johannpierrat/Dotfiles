@@ -144,4 +144,13 @@ export EDITOR='vim'
 export TERM='xterm-256color'
 export TERMINAL='xterm'
 
+#Tempory
+# Kaneton variable
+if [ -f ~/code/epita/srs/kaneton/.kaneton ]; then
+  source ~/code/epita/srs/kaneton/.kaneton
+fi
+if [ -f ~/.project ]; then
+  source ~/.project
+fi
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
