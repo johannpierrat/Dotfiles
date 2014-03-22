@@ -324,10 +324,10 @@ noremap <leader>se :Errors<cr>
 " Set the C and C++ compilers used for syntax checking with syntastic
 let g:syntastic_cpp_compiler='g++'
 " Compile flag for C++11 also add additionnal warning
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall -Werror'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -Wall'
 
 let g:syntastic_c_compiler='clang'
-let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic `sdl-config --cflags`'
+let g:syntastic_c_compiler_options = ' -std=c99 -Wall -Wextra -pedantic'
 
 " Check headers too, because why wouldn't we?
 let g:syntastic_c_check_header=1
