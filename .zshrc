@@ -46,8 +46,12 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="jonathan"
-ZSH_THEME="agnoster"
+which powerline > /dev/null
+if [ $? -eq 0 ] ; then
+  ZSH_THEME="agnoster"
+else
+  ZSH_THEME="jonathan"
+fi
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
