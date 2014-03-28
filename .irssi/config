@@ -32,7 +32,7 @@ servers = (
     address = "irc.epita.rezosup.org";
     chatnet = "epita";
     port = "6667";
-    autoconnect = "yes";
+    autoconnect = "no";
   }
 );
 
@@ -57,11 +57,7 @@ chatnets = {
 channels = (
   { name = "#startups"; chatnet = "freenode"; autojoin = "no"; },
   { name = "#teamliquid"; chatnet = "quakenet"; autojoin = "no"; },
-  { 
-    name = "#r/leagueoflegends";
-    chatnet = "quakenet";
-    autojoin = "no";
-  },
+  { name = "#r/leagueoflegends"; chatnet = "quakenet"; autojoin = "no"; },
   { name = "#Games"; chatnet = "snoonet"; autojoin = "no"; },
   { name = "##c"; chatnet = "freenode"; autojoin = "no"; },
   { name = "##cpp"; chatnet = "freenode"; autojoin = "no"; }
@@ -244,7 +240,7 @@ settings = {
     timestamp_format = "%H:%M:%S";
   };
   "fe-text" = { scrollback_time = "48h"; actlist_sort = "refnum"; };
-  "fe-common/core" = { autolog = "yes"; theme = "mursu"; };
+  "fe-common/core" = { autolog = "yes"; theme = "fear2"; };
 };
 
 #THIS SECTION DEALS WITH YOUR HILIGHTS
@@ -282,4 +278,3 @@ windows = {
   };
 };
 mainwindows = { 1 = { first_line = "1"; lines = "22"; }; };
-theme = { mursu }
