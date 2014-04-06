@@ -21,6 +21,7 @@ fi
 # initialize fonts
 cd .fonts/fantasque-sans
 make -s
+mv FantasqueSans*.ttf ..
 if [ $? -ne 0 ]; then
   echo "fail to create fonts"
 fi
