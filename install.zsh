@@ -14,7 +14,17 @@ git submodule init
 git submodule update
 
 # create vim undo dir
-mkdir .vim/undodir
+if [ ! -d .vim/undodir ]; then
+  mkdir .vim/undodir
+fi
+
+# initialize fonts
+cd .fonts/fantasque-sans
+make -s
+if [ $? -ne 0 ]; then
+  echo "fail to create fonts"
+fi
+cd $OLDPWD
 
 # Create symlinks
 cd $HOME
