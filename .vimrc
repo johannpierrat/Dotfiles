@@ -18,14 +18,40 @@
 " Disable vi compatibility mode
 set nocompatible
 
-" Pathogen -------------------------------------------------------{{{
-" Pathogen requires the ftplugins to be disabled
-filetype plugin off
+" Vundle ---------------------------------------------------------{{{
+set nocompatible
+filetype off
 
-" /!\ Comment this line if you only have the .vimrc /!\
-" Load all the plugins in .vim/bundle
-call pathogen#infect()
+set rtp+=~/.vim/bundle/Vundle
+call vundle#rc()
 
+""""""""""""""""""""""""""""""""
+" Bundles
+""""""""""""""""""""""""""""""""
+
+" Let Vundle manage himself
+Bundle 'gmarik/Vundle'
+
+" My plugins
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'Blackrush/vim-gocode'
+Bundle 'sjl/gundo.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'SirVer/ultisnips'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-fugitive'
+Bundle 'godLygeek/tabular'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'tomasr/molokai'
+Bundle 'Chewie/EPITA-snippets'
+Bundle 'tpope/vim-bundler'
+"
 " }}}
 " Enable filetype detection for plugins and indentation options
 filetype plugin indent on
@@ -313,7 +339,7 @@ noremap <leader>@ :GundoToggle<cr>
 " }}}
 " Powerline -----------------------------------------------------{{{
 " Use the patched font for the fancy status line
-let g:Powerline_symbols='fancy'
+let g:Powerline_symbols='unicode'
 
 " }}}
 "   Syntastic -----------------------------------------------------{{{
