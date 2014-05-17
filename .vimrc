@@ -51,6 +51,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'tomasr/molokai'
 Bundle 'Chewie/EPITA-snippets'
 Bundle 'tpope/vim-bundler'
+Bundle 'nvie/vim-flake8'
 "
 " }}}
 " Enable filetype detection for plugins and indentation options
@@ -339,7 +340,16 @@ noremap <leader>@ :GundoToggle<cr>
 " }}}
 " Powerline -----------------------------------------------------{{{
 " Use the patched font for the fancy status line
-let g:Powerline_symbols='unicode'
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin"
+    " Mac config
+    let g:Powerline_symbols='unicode'
+  elseif s:uname == "Linux"
+    " Linux config
+    let g:Powerline_symbols='fancy'
+  endif
+endif
 
 " }}}
 "   Syntastic -----------------------------------------------------{{{
@@ -361,6 +371,9 @@ let g:syntastic_cpp_check_header=1
 
 " Haskell option
 let g:syntastic_haskell_compiler = 'ghc'
+
+" Python option
+let g:syntastic_python_checkers = ['flake8']
 
 " }}}
 "   Clang_complete options ----------------------------------------{{{

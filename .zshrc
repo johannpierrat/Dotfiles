@@ -94,7 +94,18 @@ source $ZSH/oh-my-zsh.sh
 
 #Aliases
 ##ls, the common ones I use a lot shortened for rapid fire usage
-alias ls='ls --color' #I like color
+
+case $(uname -s) in
+  Linux)
+    echo 1
+    alias ls='ls --color' #I like color
+  ;;
+  Darwin)
+    echo 2
+    alias ls='ls -G'
+  ;;
+esac
+
 alias ll='ls -lAFh'   #Too much used to this one
 alias l='ls -lFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
@@ -102,10 +113,9 @@ alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
 alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
  
 ##cd, because typing the backslash is ALOT of work!!
-alias .='cd ../'
-alias ..='cd ../../'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
 
 # Valgrim memory
 alias valgrind='valgrind --tool=memcheck --leak-check=full --show-reachable=yes'
@@ -132,7 +142,6 @@ alias grep="grep --colour"
 alias mkdir='mkdir -p'
 
 # Aliases
-alias ls='ls --color=auto'
 alias rat='tmux attach-session'
 alias se='sudoedit'
 
