@@ -97,11 +97,9 @@ source $ZSH/oh-my-zsh.sh
 
 case $(uname -s) in
   Linux)
-    echo 1
     alias ls='ls --color' #I like color
   ;;
   Darwin)
-    echo 2
     alias ls='ls -G'
   ;;
 esac
