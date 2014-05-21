@@ -52,6 +52,7 @@ Bundle 'tomasr/molokai'
 Bundle 'Chewie/EPITA-snippets'
 Bundle 'tpope/vim-bundler'
 Bundle 'nvie/vim-flake8'
+Bundle 'Valloric/YouCompleteMe'
 "
 " }}}
 " Enable filetype detection for plugins and indentation options
@@ -254,8 +255,25 @@ vnoremap < < gv
 " Write as root, when you forgot to sudoedit
 cnoreabbrev w!! w !sudo tee % >/dev/null
 
-" Toggle spellcheck
-nnoremap <F5> :setlocal spell!<CR>
+" Function change language spellcheck ---------------------------{{{
+let g:myLangList = ["nospell", "en_gb", "fr"]
+function! MySpellLang()
+  " loop through languages
+  if !exists("b:myLang")
+    let b:myLang = 0
+  endif
+  if b:myLang == 0 | setlocal nospell | endif
+  if b:myLang == 1 | setlocal spell spelllang=en_gb | endif
+  if b:myLang == 2 | setlocal spell spelllang=fr | endif
+  echo "spellcheck:" g:myLangList[b:myLang]
+  let b:myLang = b:myLang + 1
+  if b:myLang > 2 | let b:myLang = 0 | endif
+endf
+nnoremap <F5> :call MySpellLang()<CR>
+inoremap <F5> <C-o>:call MySpellLang()<CR>
+"
+" }}}
+
 " map ; to :
 noremap ; :
 " Error display -------------------------------------------------{{{
