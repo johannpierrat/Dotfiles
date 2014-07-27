@@ -36,7 +36,6 @@ Bundle 'gmarik/Vundle'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'sjl/gundo.vim'
-Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-repeat'
@@ -52,8 +51,7 @@ Bundle 'tomasr/molokai'
 Bundle 'Chewie/EPITA-snippets'
 Bundle 'tpope/vim-bundler'
 Bundle 'nvie/vim-flake8'
-"Bundle 'Valloric/YouCompleteMe'
-" Not working with syntastic right now need to fix
+Bundle 'Valloric/YouCompleteMe'
 "
 " }}}
 " Enable filetype detection for plugins and indentation options
@@ -408,4 +406,13 @@ let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
 
 " }}}
+" YouCompleteMe -------------------------------------------------{{{
+let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+let g:ycm_global_ycm_extra_conf= "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_confirm_extra_conf = 0
+
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+"
+" }}}
+
 " }}}
