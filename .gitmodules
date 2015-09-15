@@ -1,9 +1,9 @@
 [submodule ".fonts/dejavu-powerline"]
 	path = .fonts/dejavu-powerline
-	url = git://gist.github.com/1630581.git
+	url = https://gist.github.com/1630581.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
+	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".fonts/fantasque-sans"]
 	path = .fonts/fantasque-sans
 	url = https://github.com/belluzj/fantasque-sans.git

@@ -1,8 +1,7 @@
-*.o
-*.a
-*.so
-*.gch
-*.pyc
 .ssh/*
+.vim/plugged/*
+.vim/autoload/plug.vim
+.fonts/*
+.vim/spell
+.ghc/ghci_history
 .vim/.netrwhist
-*.swp

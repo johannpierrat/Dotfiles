@@ -153,7 +153,11 @@ export NNTPSERVER='news.epita.fr'
 export PATH="/sbin:$PATH"
 export EDITOR='vim'
 export TERM='xterm-256color'
-export TERMINAL='xterm'
+if [ -f /usr/bin/konsole ]; then
+    export TERMINAL='konsole'
+else
+    export TERMINAL='xterm'
+fi
 
 #Tempory
 # Kaneton variable
@@ -162,6 +166,10 @@ if [ -f ~/code/epita/srs/kaneton/.kaneton ]; then
 fi
 if [ -f ~/.project ]; then
   source ~/.project
+fi
+
+if [ -f ~/.proxyrc ]; then
+    source ~/.proxyrc
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

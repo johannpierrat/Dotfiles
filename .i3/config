@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -112,9 +112,9 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 # reload the configuration file
 bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exit
+bindsym $mod+Shift+e exit
 
 # Lock the system
 # Change the path for the image must be a png (check man i3lock)
@@ -157,10 +157,11 @@ bar {
         font pango:DejaVu Sans Mono 7
         tray_output primary
         status_command py3status -c ~/.i3/i3status.conf
+        #status_command i3status
 }
 
 
 exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id ~/Pictures/wallpaper/sliding
+#exec --no-startup-id ~/Pictures/wallpaper/sliding
 exec --no-startup-id nm-applet
 exec --no-startup-id synaptiks
