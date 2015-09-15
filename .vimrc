@@ -18,42 +18,37 @@
 " Disable vi compatibility mode
 set nocompatible
 
-" Vundle ---------------------------------------------------------{{{
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-
-""""""""""""""""""""""""""""""""
-" Bundles
-""""""""""""""""""""""""""""""""
-
-" Let Vundle manage himself
-Bundle 'gmarik/Vundle'
-
-" My plugins
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Blackrush/vim-gocode'
-Bundle 'sjl/gundo.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'SirVer/ultisnips'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-fugitive'
-Bundle 'godLygeek/tabular'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'tomasr/molokai'
-Bundle 'Chewie/EPITA-snippets'
-Bundle 'tpope/vim-bundler'
-Bundle 'nvie/vim-flake8'
-Bundle 'Valloric/YouCompleteMe'
+" Vim-plug -------------------------------------------------------{{{
 "
+call plug#begin('~/.vim/plugged')
+
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'Blackrush/vim-gocode'
+Plug 'sjl/gundo.vim'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'godLygeek/tabular'
+Plug 'gregsexton/gitv'
+Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
+Plug 'tomasr/molokai'
+Plug 'Chewie/EPITA-snippets'
+Plug 'tpope/vim-bundler'
+Plug 'nvie/vim-flake8'
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+autocmd! User YouCompleteMe call youcompleteme#Enable()
+
+call plug#end()
+
 " }}}
+
 " Enable filetype detection for plugins and indentation options
 filetype plugin indent on
 filetype plugin on
@@ -205,10 +200,10 @@ set gdefault
 set tabstop=8
 
 " The number of spaces inserted when you press tab
-set softtabstop=2
+set softtabstop=4
 
 " The number of spaces inserted/removed when using < or >
-set shiftwidth=2
+set shiftwidth=4
 
 " Insert spaces instead of tabs
 set expandtab
@@ -246,6 +241,9 @@ nnoremap k gk
 
 " Yank from cursor to end of line, to be consistent with C and D
 nnoremap Y y$
+
+" Remove whitespace
+nnoremap <leader>ws ggVG :s/\s\+$//<cr>
 
 " Reselect line after indent, this allow quick multiple indent
 vnoremap > > gv
@@ -333,6 +331,7 @@ au VimEnter * RainbowParenthesesToggleAll
 " Tagbar --------------------------------------------------------{{{
 " Toggle Tagbar
 noremap <leader>tt :TagbarToggle<cr>
+noremap <leader>tj :TagbarOpen j<cr>
 
 " }}}
 " NERDTree ------------------------------------------------------{{{
@@ -366,6 +365,7 @@ if has("unix")
     " Linux config
     let g:Powerline_symbols='fancy'
   endif
+  unlet s:uname
 endif
 
 " }}}
@@ -407,12 +407,24 @@ let g:clang_snippets_engine="ultisnips"
 
 " }}}
 " YouCompleteMe -------------------------------------------------{{{
-let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-let g:ycm_global_ycm_extra_conf= "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+"let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+let g:ycm_global_ycm_extra_conf= "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 "
 " }}}
+" UltiSnips -----------------------------------------------------{{{
+let g:UltiSnipsExpandTrigger="<c-space>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
+let g:UltiSnipsEditSplit="vertical"
+" 
+" }}}
+" Gitv ----------------------------------------------------------{{{
+"
+nnoremap <leader>< :Gitv<cr>
+"
+" }}}
 " }}}
