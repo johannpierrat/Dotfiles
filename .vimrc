@@ -242,6 +242,10 @@ noremap <leader>pp :setlocal paste!<cr>
 nnoremap j gj
 nnoremap k gk
 
+" Easier navigation on line
+nnoremap <leader>[ ^
+nnoremap <leader>] $
+
 " Yank from cursor to end of line, to be consistent with C and D
 nnoremap Y y$
 
@@ -254,6 +258,9 @@ vnoremap < < gv
 
 " Write as root, when you forgot to sudoedit
 cnoreabbrev w!! w !sudo tee % >/dev/null
+
+" Find TODO and FIXME in directory and show them in new quick window
+nnoremap <leader>0 :vimgrep /TODO\\|FIXME/ **/*<cr>:cw<cr>
 
 " Mapping bracket completion ------------------------------------{{{
 inoremap { {}<left>
