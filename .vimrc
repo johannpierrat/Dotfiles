@@ -134,6 +134,9 @@ set listchars=tab:>─,eol:¬,trail:\ ,nbsp:¤
 set fillchars=vert:│
 
 " }}}
+" Resize splits when vim windows is resized
+au vimresized * exe "normal! \<c-w>="
+
 " Enables syntax highlighting
 syntax on
 " Colorscheme option -------------------------------------------{{{
@@ -252,6 +255,38 @@ vnoremap < < gv
 " Write as root, when you forgot to sudoedit
 cnoreabbrev w!! w !sudo tee % >/dev/null
 
+" Mapping bracket completion ------------------------------------{{{
+inoremap { {}<left>
+inoremap {<cr> {<cr>}<esc>O
+inoremap {{ {
+inoremap {} {}
+
+
+inoremap ( ()<left>
+inoremap (<cr> (<cr>)<esc>O
+inoremap (( (
+inoremap () ()
+
+inoremap [ []<left>
+inoremap [<cr> [<cr>]<esc>O
+inoremap [[ [
+inoremap [] []
+" }}}
+" Mapping open split --------------------------------------------{{{
+" Open vimrc on a new split
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" open horizontal split
+nnoremap <leader>e :split<cr><C-w><C-j>
+
+" open vertical split
+nnoremap <leader>v :vsplit<cr><C-w><C-l>
+
+" }}}
+" Mapping <tab> to switch between brackets ----------------------{{{
+nnoremap <tab> %
+vnoremap <tab> %
+" }}}
 " Function change language spellcheck ---------------------------{{{
 let g:myLangList = ["nospell", "en_gb", "fr"]
 function! MySpellLang()
@@ -270,7 +305,6 @@ nnoremap <F5> :call MySpellLang()<CR>
 inoremap <F5> <C-o>:call MySpellLang()<CR>
 "
 " }}}
-
 " map ; to :
 noremap ; :
 " Error display -------------------------------------------------{{{
@@ -327,6 +361,12 @@ endif "}}}
 " Toggle Rainbow Parentheses
 au VimEnter * RainbowParenthesesToggleAll
 
+" }}}
+" CtrlP -----------------------------------------------------------{{{
+" Open file
+nnoremap <leader>o :CtrlP<cr>
+" Buffer explorer
+nnoremap <leader>b :CtrlPBuffer<cr>
 " }}}
 " Tagbar --------------------------------------------------------{{{
 " Toggle Tagbar
