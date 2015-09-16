@@ -13,6 +13,24 @@
 "   You can find it here: https://bitbucket.org/delroth/configs/
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
+" Detect OS ------------------------------------------------------{{{
+"
+let g:os = "unknown"
+if has('win32')
+    let g:os = "windows"
+else
+    let uname = substitute(system('uname -s'), "\n", "", "")
+    if uname == "SunOS"
+        let g:os = "sun"
+    elseif uname == "Linux"
+        let g:os = "linux"
+    elseif uname == "Darwin"
+        let g:os = "osx"
+    endif
+endif
+
+" }}}
 " General Parameters ---------------------------------------------{{{
 
 " Disable vi compatibility mode
@@ -23,7 +41,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Blackrush/vim-gocode'
+Plug 'fatih/vim-go', { 'for' : 'go' }
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -42,6 +60,7 @@ Plug 'Chewie/EPITA-snippets'
 Plug 'tpope/vim-bundler'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
+Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()
 
@@ -238,6 +257,7 @@ cnoremap %s %s/\v
 " Toggle paste mode
 noremap <leader>pp :setlocal paste!<cr>
 
+" Navigation ----------------------------------------------------{{{
 " Move between rows in wrapped lines
 nnoremap j gj
 nnoremap k gk
@@ -246,6 +266,12 @@ nnoremap k gk
 nnoremap <leader>[ ^
 nnoremap <leader>] $
 
+" Mapping <tab> to switch between brackets ----------------------{{{
+nnoremap <tab> %
+vnoremap <tab> %
+" }}}
+
+" }}}
 " Yank from cursor to end of line, to be consistent with C and D
 nnoremap Y y$
 
@@ -268,7 +294,6 @@ inoremap {<cr> {<cr>}<esc>O
 inoremap {{ {
 inoremap {} {}
 
-
 inoremap ( ()<left>
 inoremap (<cr> (<cr>)<esc>O
 inoremap (( (
@@ -290,10 +315,6 @@ nnoremap <leader>e :split<cr><C-w><C-j>
 nnoremap <leader>v :vsplit<cr><C-w><C-l>
 
 " }}}
-" Mapping <tab> to switch between brackets ----------------------{{{
-nnoremap <tab> %
-vnoremap <tab> %
-" }}}
 " Function change language spellcheck ---------------------------{{{
 let g:myLangList = ["nospell", "en_gb", "fr"]
 function! MySpellLang()
@@ -314,6 +335,7 @@ inoremap <F5> <C-o>:call MySpellLang()<CR>
 " }}}
 " map ; to :
 noremap ; :
+
 " Error display -------------------------------------------------{{{
 "
 " Open the quickfix window if there are errors, or close it if there are no
@@ -403,16 +425,12 @@ noremap <leader>@ :GundoToggle<cr>
 " }}}
 " Powerline -----------------------------------------------------{{{
 " Use the patched font for the fancy status line
-if has("unix")
-  let s:uname = system("uname -s")
-  if s:uname == "Darwin"
+if g:os == "osx"
     " Mac config
     let g:Powerline_symbols='unicode'
-  elseif s:uname == "Linux"
+elseif g:os == "linux"
     " Linux config
     let g:Powerline_symbols='fancy'
-  endif
-  unlet s:uname
 endif
 
 " }}}
@@ -454,7 +472,9 @@ let g:clang_snippets_engine="ultisnips"
 
 " }}}
 " YouCompleteMe -------------------------------------------------{{{
-"let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+if g:os == "Darwin"
+    let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+endif
 let g:ycm_global_ycm_extra_conf= "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 
@@ -472,6 +492,15 @@ let g:UltiSnipsEditSplit="vertical"
 " Gitv ----------------------------------------------------------{{{
 "
 nnoremap <leader>< :Gitv<cr>
+"
+" }}}
+" Vim-LaTeX -----------------------------------------------------{{{
+"
+if g:os == "windows"
+    set shellslash
+endif
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
 "
 " }}}
 " }}}
