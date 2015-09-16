@@ -60,6 +60,7 @@ Plug 'Chewie/EPITA-snippets'
 Plug 'tpope/vim-bundler'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
+Plug 'sjl/splice.vim'
 Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 Plug 'Valloric/YouCompleteMe',
     \ { 'do': './install.py --clang-completer --go-completer' }

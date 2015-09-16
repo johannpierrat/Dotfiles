@@ -13,6 +13,13 @@
     token=91618dddd375001285ebb91686b0e49e51029009
     user=johannpierrat
 
+[merge]
+    tool = splice
+
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
+
 [alias]
     st = status
     ci = commit -a
