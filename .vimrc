@@ -61,7 +61,8 @@ Plug 'tpope/vim-bundler'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
 Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe',
+    \ { 'do': './install.py --clang-completer --go-completer' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 call plug#end()

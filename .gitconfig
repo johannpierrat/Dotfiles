@@ -8,6 +8,11 @@
 [core]
     excludesfile = ~/.gitignore_global
 
+[github]
+    name=johannpierrat
+    token=91618dddd375001285ebb91686b0e49e51029009
+    user=johannpierrat
+
 [alias]
     st = status
     ci = commit -a
