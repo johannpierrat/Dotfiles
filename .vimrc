@@ -42,6 +42,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'fatih/vim-go', { 'for' : 'go' }
+Plug 'jmcantrell/vim-virtualenv', { 'for' : 'python' }
 Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -54,7 +55,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'godLygeek/tabular'
 Plug 'gregsexton/gitv'
-Plug 'Lokaltog/vim-powerline', { 'branch': 'develop' }
+Plug 'powerline/powerline', { 'branch': 'develop', 
+            \'rtp' : 'powerline/bindings/vim/' }
 Plug 'tomasr/molokai'
 Plug 'Chewie/EPITA-snippets'
 Plug 'tpope/vim-bundler'
@@ -63,7 +65,7 @@ Plug 'scrooloose/syntastic'
 Plug 'sjl/splice.vim'
 Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 Plug 'Valloric/YouCompleteMe',
-    \ { 'do': './install.py --clang-completer --go-completer' }
+    \ { 'do': './install.py --clang-completer --gocode-completer' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 call plug#end()
@@ -475,9 +477,11 @@ let g:clang_snippets_engine="ultisnips"
 " }}}
 " YouCompleteMe -------------------------------------------------{{{
 if g:os == "Darwin"
-    let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+    let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/" .
+        \ "Toolchains/XcodeDefault.xctoolchain/usr/lib"
 endif
-let g:ycm_global_ycm_extra_conf= "~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf= "~/.vim/plugged/YouCompleteMe/" .
+    \ "third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_confirm_extra_conf = 0
 
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
