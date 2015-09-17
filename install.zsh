@@ -6,6 +6,7 @@
 
 
 # Set options related to globbing, for the last line
+
 setopt extendedglob
 setopt glob_dots
 
@@ -19,11 +20,18 @@ if [ ! -d .vim/undodir ]; then
 fi
 
 # initialize fonts
-cd $OLDPWD
+#
 
 # Create symlinks
 cd $HOME
 ln -f -s $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown~*.gitignore .
+
+# initialize fonts
+#
+cd $OLDPWD
+cd ~/.fonts/powerline
+./install.sh
+cd $OLDPWD
 
 # install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dir https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
