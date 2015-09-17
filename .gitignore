@@ -1,7 +1,9 @@
 .ssh/*
 .vim/plugged/*
 .vim/autoload/plug.vim
-.fonts/*
+.fonts/*.otf
+.fonts/*.ttf
+.fonts/*.pcf.gz
 .vim/spell
 .ghc/ghci_history
 .vim/.netrwhist
