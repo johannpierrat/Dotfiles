@@ -50,6 +50,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
@@ -490,7 +491,7 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 " UltiSnips -----------------------------------------------------{{{
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 
 let g:UltiSnipsEditSplit="vertical"
 " 

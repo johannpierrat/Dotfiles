@@ -1,5 +1,5 @@
 if g:os == 'linux'
-    set guifont=Fantasque\ Sans\ Mono\ Regular\ 16
+    set guifont=Fantasque\ Sans\ Mono\ Regular\ 9
 elseif g:os == 'osx'
     set guifont=Fantasque\ Sans\ Mono\ Regular:h16
 endif
@@ -18,5 +18,8 @@ if g:os == 'linux'
 end
 
 let mapleader = ","
+
+" Desactivate visualbell
+set novisualbell
 
 nnoremap <leader>f :set invfu<cr>
