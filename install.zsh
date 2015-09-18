@@ -23,8 +23,8 @@ cd $OLDPWD
 
 # Create symlinks
 cd $HOME
-ln -f -v -s "$OLDPWD/*~*.git~*.gitmodules~*install.zsh"\
-    "~*README.markdown~*.gitignore" .
+ln -f -s \
+    $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown~*.gitignore .
 
 # install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dir \
