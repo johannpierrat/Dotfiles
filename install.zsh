@@ -24,7 +24,8 @@ fi
 
 # Create symlinks
 cd $HOME
-ln -f -s $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown~*.gitignore .
+ln -f -s \
+    $OLDPWD/*~*.git~*.gitmodules~*install.zsh~*README.markdown~*.gitignore .
 
 # initialize fonts
 #
@@ -34,7 +35,8 @@ cd ~/.fonts/powerline
 cd $OLDPWD
 
 # install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dir https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dir \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Run vim plug to install plugin then exit
 vim -e +PlugInstall +quitall
