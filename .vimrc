@@ -64,9 +64,8 @@ Plug 'tpope/vim-bundler'
 Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
 Plug 'sjl/splice.vim'
-Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
-Plug 'Valloric/YouCompleteMe',
-    \ { 'do': './install.py --clang-completer --gocode-completer' }
+Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+"Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 call plug#end()
@@ -476,18 +475,6 @@ let g:clang_snippets=1
 let g:clang_snippets_engine="ultisnips"
 
 " }}}
-" YouCompleteMe -------------------------------------------------{{{
-if g:os == "Darwin"
-    let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/" .
-        \ "Toolchains/XcodeDefault.xctoolchain/usr/lib"
-endif
-let g:ycm_global_ycm_extra_conf= "~/.vim/plugged/YouCompleteMe/" .
-    \ "third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-let g:ycm_confirm_extra_conf = 0
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-"
-" }}}
 " UltiSnips -----------------------------------------------------{{{
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -501,13 +488,7 @@ let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>< :Gitv<cr>
 "
 " }}}
-" Vim-LaTeX -----------------------------------------------------{{{
-"
-if g:os == "windows"
-    set shellslash
-endif
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-"
+" Jedi-Vim ------------------------------------------------------{{{
+
 " }}}
 " }}}

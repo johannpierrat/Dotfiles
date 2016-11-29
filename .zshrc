@@ -86,7 +86,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras python ssh-agent)
+plugins=(git git-extras python ssh-agent osx pip vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,11 +110,6 @@ alias la='ls -lAFh'   #long list,show almost all,show type,human readable
 alias lr='ls -tRFh'   #sorted by date,recursive,show type,human readable
 alias lt='ls -ltFh'   #long list,sorted by date,show type,human readable
  
-##cd, because typing the backslash is ALOT of work!!
-alias ..='cd ../'
-alias ...='cd ../../'
-alias ....='cd ../../../'
-
 # Valgrim memory
 alias valgrind='valgrind --tool=memcheck --leak-check=full --show-reachable=yes'
 
@@ -172,4 +167,13 @@ if [ -f ~/.proxyrc ]; then
     source ~/.proxyrc
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [ -d $HOME/.rvm ]; then
+  PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+fi
+PATH="/usr/local/sbin:$PATH"
+if [ -d $HOME/.virtualenvs ]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+fi
+if `which virtualenvwrapper.sh>/dev/null`; then
+  source virtualenvwrapper.sh
+fi
