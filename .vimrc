@@ -296,6 +296,7 @@ nnoremap <leader>0 :vimgrep /TODO\\|FIXME/ **/*<cr>:cw<cr>
 inoremap { {}<left>
 inoremap {<cr> {<cr>}<esc>O
 inoremap {{ {
+inoremap {{{ {{{}}}<Left><Left><Left>
 inoremap {} {}
 
 inoremap ( ()<left>
