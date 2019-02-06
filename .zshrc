@@ -171,9 +171,24 @@ if [ -d $HOME/.rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
 PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/bin:$PATH"
 if [ -d $HOME/.virtualenvs ]; then
   export WORKON_HOME=$HOME/.virtualenvs
 fi
 if `which virtualenvwrapper.sh>/dev/null`; then
   source virtualenvwrapper.sh
 fi
+case $(uname -s) in
+  #3inux)
+  #  alias ls='ls --color' #I like color
+  #;;
+  Darwin)
+      if [ -d $HOME/Library/Android/sdk ]; then
+          export ANDROID_HOME=$HOME/Library/Android/sdk
+          PATH=$PATH:$ANDROID_HOME/tools
+          PATH=$PATH:$ANDROID_HOME/platform-tools
+          PATH=$PATH:$ANDROID_HOME/build-tools
+      fi
+  ;;
+esac
+export PATH
