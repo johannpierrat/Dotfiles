@@ -65,6 +65,7 @@ Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
 Plug 'sjl/splice.vim'
 Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+Plug 'mfukar/robotframework-vim', { 'for' : 'robot' }
 "Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 autocmd! User YouCompleteMe call youcompleteme#Enable()
 
