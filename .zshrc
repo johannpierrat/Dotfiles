@@ -192,3 +192,8 @@ case $(uname -s) in
   ;;
 esac
 export PATH
+
+# Add file for specific variable outside the .dotfiles config
+if [ -f ~/.zshrc_custom ]; then
+    source ~/.zshrc_custom
+fi
