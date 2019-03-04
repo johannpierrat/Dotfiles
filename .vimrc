@@ -41,9 +41,6 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'fatih/vim-go', { 'for' : 'go' }
-Plug 'jmcantrell/vim-virtualenv', { 'for' : 'python' }
-Plug 'sjl/gundo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-repeat'
@@ -56,18 +53,25 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'godLygeek/tabular'
 Plug 'gregsexton/gitv'
-Plug 'powerline/powerline', { 'branch': 'develop', 
-            \'rtp' : 'powerline/bindings/vim/' }
 Plug 'tomasr/molokai'
 Plug 'Chewie/EPITA-snippets'
 Plug 'tpope/vim-bundler'
-Plug 'nvie/vim-flake8'
 Plug 'scrooloose/syntastic'
 Plug 'sjl/splice.vim'
-Plug 'davidhalter/jedi-vim', { 'for' : 'python' }
+Plug 'powerline/powerline', { 'branch': 'develop', 
+            \'rtp' : 'powerline/bindings/vim/' }
+Plug 'sjl/gundo.vim', { 'on' : 'GundoToggle' }
+Plug 'python-mode/python-mode', { 'branch': 'develop', 
+            \'for' : 'python' }
+Plug 'jmcantrell/vim-virtualenv', { 'for' : 'python' }
+Plug 'nvie/vim-flake8', { 'for' : 'python' }
 Plug 'mfukar/robotframework-vim', { 'for' : 'robot' }
+Plug 'leafgarland/typescript-vim', { 'for' : 'typescript' }
+Plug 'udalov/kotlin-vim', { 'for' : 'kotlin' }
+Plug 'fatih/vim-go', { 'for' : 'go' }
+Plug 'elzr/vim-json', { 'for' : 'json' }
+Plug 'pangloss/vim-javascript', { 'for' : 'javascript' }
 "Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
-autocmd! User YouCompleteMe call youcompleteme#Enable()
 
 call plug#end()
 
@@ -412,11 +416,12 @@ noremap <leader>tj :TagbarOpen j<cr>
 " NERDTree ------------------------------------------------------{{{
 " Toggle NERDTree
 noremap <leader>nt :NERDTreeToggle<cr>
+noremap <leader>nn :NERDTree<cr>
 
 " }}}
 " Tabular--------------------------------------------------------{{{
 " Align all variable names with tabular
-noremap <leader>ta :Tab / [^ ]*;<cr>
+noremap <leader>ta :Tab / [^  ]*; <cr>
 
 " }}}
 " Fugitive ------------------------------------------------------{{{
@@ -425,6 +430,9 @@ noremap <leader>gs :Gstatus<cr>
 
 " }}}
 " Gundo ---------------------------------------------------------{{{
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 " Shortcut GundoToggle
 noremap <leader>@ :GundoToggle<cr>
 
