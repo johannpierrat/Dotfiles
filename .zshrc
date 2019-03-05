@@ -159,7 +159,12 @@ fi
 if [ -f ~/.proxyrc ]; then
     source ~/.proxyrc
 fi
+# Rust support
+if [ -d $HOME/.cargo]; then
+    PATH=$PATH:$HOME/.cargo/bin
+fi
 
+# Ruby Support
 if [ -d $HOME/.rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
@@ -181,6 +186,9 @@ case $(uname -s) in
           PATH=$PATH:$ANDROID_HOME/tools
           PATH=$PATH:$ANDROID_HOME/platform-tools
           PATH=$PATH:$ANDROID_HOME/build-tools
+      fi
+      if [ -d /usr/local/opt/llvm ]; then
+          export PATH="/usr/local/opt/llvm/bin:$PATH"
       fi
   ;;
 esac
