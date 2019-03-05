@@ -138,8 +138,10 @@ alias mkdir='mkdir -p'
 alias rat='tmux attach-session'
 alias se='sudoedit'
 
-# Launch steam with primusrun
-alias steam='primusrun steam'
+# Alias for nvim
+if [ $(which nvim > /dev/null; echo $?) -eq 0 ]; then
+    alias vim='nvim'
+fi
 
 # Exports
 export RPROMPT='${vcs_info_msg_0_}'
@@ -152,15 +154,6 @@ if [ -f /usr/bin/konsole ]; then
     export TERMINAL='konsole'
 else
     export TERMINAL='xterm'
-fi
-
-#Tempory
-# Kaneton variable
-if [ -f ~/code/epita/srs/kaneton/.kaneton ]; then
-  source ~/code/epita/srs/kaneton/.kaneton
-fi
-if [ -f ~/.project ]; then
-  source ~/.project
 fi
 
 if [ -f ~/.proxyrc ]; then
