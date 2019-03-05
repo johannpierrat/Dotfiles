@@ -38,7 +38,7 @@ set nocompatible
 
 " Vim-plug -------------------------------------------------------{{{
 "
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
@@ -58,8 +58,8 @@ Plug 'Chewie/EPITA-snippets'
 Plug 'tpope/vim-bundler'
 Plug 'scrooloose/syntastic'
 Plug 'sjl/splice.vim'
-Plug 'powerline/powerline', { 'branch': 'develop', 
-            \'rtp' : 'powerline/bindings/vim/' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'sjl/gundo.vim', { 'on' : 'GundoToggle' }
 Plug 'python-mode/python-mode', { 'branch': 'develop', 
             \'for' : 'python' }
@@ -71,6 +71,19 @@ Plug 'udalov/kotlin-vim', { 'for' : 'kotlin' }
 Plug 'fatih/vim-go', { 'for' : 'go' }
 Plug 'elzr/vim-json', { 'for' : 'json' }
 Plug 'pangloss/vim-javascript', { 'for' : 'javascript' }
+" Vim-plug -------------------------------------------------------{{{
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
+" }}}
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
 "Plug 'vim-latex/vim-latex', { 'for' : 'tex' }
 
 call plug#end()
@@ -372,7 +385,7 @@ noremap <C-l> <C-w><C-l>
 " Persistence options --------------------------------------------{{{
 
 " Set location of the viminfo file
-set viminfo='20,\"50,<100,n~/.vimtmp/viminfo
+set viminfo='20,\"50,<100,n~/.vimtmp/nviminfo
 
 " From the Vim wiki
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
@@ -391,8 +404,8 @@ augroup END
 " Persistent undo {{{
 if version >= 703
     set undofile
-    set undodir=~/.vimtmp/undo
-    silent !mkdir -p ~/.vimtmp/undo
+    set undodir=~/.nvimtmp/undo
+    silent !mkdir -p ~/.nvimtmp/undo
 endif "}}}
 " }}}
 " Plugin options -------------------------------------------------{{{
@@ -437,16 +450,8 @@ endif
 noremap <leader>@ :GundoToggle<cr>
 
 " }}}
-" Powerline -----------------------------------------------------{{{
-" Use the patched font for the fancy status line
-if g:os == "osx"
-    " Mac config
-    let g:Powerline_symbols='unicode'
-elseif g:os == "linux"
-    " Linux config
-    let g:Powerline_symbols='fancy'
-endif
-
+" Air-vim -------------------------------------------------------{{{
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " }}}
 "   Syntastic -----------------------------------------------------{{{
 
