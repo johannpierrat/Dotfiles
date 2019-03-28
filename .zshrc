@@ -86,7 +86,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras python ssh-agent osx pip vi-mode)
+plugins=(git git-extras python ssh-agent osx pip vi-mode mvn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -160,7 +160,7 @@ if [ -f ~/.proxyrc ]; then
     source ~/.proxyrc
 fi
 # Rust support
-if [ -d $HOME/.cargo]; then
+if [ -d $HOME/.cargo ]; then
     PATH=$PATH:$HOME/.cargo/bin
 fi
 
@@ -168,6 +168,11 @@ fi
 if [ -d $HOME/.rvm ]; then
   PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
+# Maven support
+if [ -d $HOME/.m2 ]; then
+    export M2_HOME=$HOME/.m2
+fi
+
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 if [ -d $HOME/.virtualenvs ]; then
